@@ -1,0 +1,29 @@
+{% extends  'first/base.html' %}  <!-- base.html의 블락 코드로 확장(extends) 시켜줄 생각으로 작성한 코드 줄이다. -->
+{% block content %}
+<p>수를 하나 입력해주세요.</p>
+
+<form action="{% url 'result' %}" method="get">  <!-- 여기서 form 태그의 역할은 수를 하나 입력받게 할 것이다. action은 method인 get으로 반환받은 값을 어느 path로 전달하면 될지 적어주는 것이다. -->
+    <input type="number" name="number"/>  <!-- input type="button" 과 달리, 이건 number 타입을 입력받게 되어있다. -->
+                                          <!-- 그리고 name을 "number"로 적었으므로, 나중에 버튼을 누르게 되면
+                                          url 뒤에 /?number=숫자 이런식으로 적힌다.
+                                          예를들어 3을 입력했으면, http://127.0.0.1:8000/result/?number=3 이런식인 것이다. -->
+    <!-- 과정을 설명하자면, 숫자를 입력해주면, urls.py 파일의 path('result/')부분을 찾아가고(아마 name='result' 라고 된 path 부분일지도?), 그 안에 적힌 views.result 때문에,
+    views.py 파일의 def result 메소드의 request 매개변수 값으로 해당 입력한 숫자의 값이 전달되어 해당 메소드를 실행하게 되는것이다. -->
+    <button type="submit">결과보기</button>
+</form>
+{% endblock %}
+
+<!-- block 사이에 주석을 밑의 내용처럼 문단으로 길게 넣으면 이상하게 에러가 난다. -->
+    <!--
+    - 원래 body 태그안에 적었던거 -
+    <p>
+        {% if number|divisibleby:2 %}  // 해당값이 2로 나누어 지느냐
+            짝수입니다.
+        {% else %}
+            홀수입니다.  // context = {'number':3} 이므로, 홀수입니다 가 출력된다.
+        {% endif %}  // html에서는 if문 사용할때, if, elif, else 순으로 사용하고 마지막에 endif로 닫아준다.
+    </p>
+    <p>
+        <a href = "{% url 'result' %}"><button>결과보기</button></a>
+    </p>
+    -->
