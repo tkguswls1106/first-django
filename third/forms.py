@@ -10,6 +10,7 @@ REVIEW_POINT_CHOICES = (
     ('4', 4),  # '4'은 평점 4점
     ('5', 5),  # '5'은 평점 5점
 )  # 평점 설정함.
+# 앞 값은 DB에 저장되는 값이고 뒷 값은 폼이나 템플릿 등에서 출력하는 값
 
 
 class ReviewForm(ModelForm):
